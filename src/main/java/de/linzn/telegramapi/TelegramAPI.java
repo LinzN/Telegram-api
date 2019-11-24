@@ -23,4 +23,8 @@ public class TelegramAPI {
     public TelegramResponse<String> sendMessage(String chatID, String text) {
         return SendMessage.init(this.token, chatID, text).sendAPIRequest();
     }
+
+    public TelegramResponse<String> getUpdate() {
+        return GetUpdate.init(this.token).sendAPIRequest();
+    }
 }
