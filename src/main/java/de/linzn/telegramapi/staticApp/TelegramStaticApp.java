@@ -52,10 +52,10 @@ public class TelegramStaticApp {
     }
 
     private static void send(String token, String[] args) {
-        if (args.length >= 3) {
-            String chatID = args[1];
+        if (args.length >= 2) {
+            String chatID = args[0];
             StringBuilder text = new StringBuilder();
-            for (int i = 2; i < args.length; i++) {
+            for (int i = 1; i < args.length; i++) {
                 text.append(args[i]).append(" ");
             }
             TelegramAPI telegramAPI = new TelegramAPI(token);
