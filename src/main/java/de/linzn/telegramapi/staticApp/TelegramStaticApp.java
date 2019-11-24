@@ -92,20 +92,20 @@ public class TelegramStaticApp {
         Date date = new Date(jsonObject.getJSONObject("message").getLong("date") * 1000);
 
         output.append("ChatEntity: ").append("\n");
-        output.append("date: " + new SimpleDateFormat("yyyy.MM.dd - HH:mm:ss").format(date)).append("\n");
-        output.append("isGroup: " + isGroup).append("\n");
+        output.append("date: ").append(new SimpleDateFormat("yyyy.MM.dd - HH:mm:ss").format(date)).append("\n");
+        output.append("isGroup: ").append(isGroup).append("\n");
         if (isGroup) {
-            output.append("groupName: " + chat.getString("title")).append("\n");
+            output.append("groupName: ").append(chat.getString("title")).append("\n");
         }
-        output.append("chatID: " + chatID).append("\n");
+        output.append("chatID: ").append(chatID).append("\n");
 
-        output.append("sender: " + sender).append("\n");
+        output.append("sender: ").append(sender).append("\n");
 
         if (isGroup) {
-            output.append("senderChatID: " + senderChatID).append("\n");
+            output.append("senderChatID: ").append(senderChatID).append("\n");
         }
 
-        output.append("text: " + text);
+        output.append("text: ").append(text);
         return output.toString();
     }
 }
