@@ -36,9 +36,25 @@ public class GetUpdate implements ITelegramAPI {
                 .build();
     }
 
+    private GetUpdate(String token, long offset) {
+        TelegramURLBuilder builder = TelegramURLBuilder
+                .fromURI("https://api.telegram.org")
+                .path("/{token}/getUpdates?offset=" + offset)
+                .setToken(token);
+        request = HttpRequest.newBuilder()
+                .GET()
+                .uri(builder.build())
+                .timeout(Duration.ofSeconds(5))
+                .build();
+    }
+
 
     static GetUpdate init(String token) {
         return new GetUpdate(token);
+    }
+
+    static GetUpdate init(String token, long offset) {
+        return new GetUpdate(token, offset);
     }
 
     @Override
