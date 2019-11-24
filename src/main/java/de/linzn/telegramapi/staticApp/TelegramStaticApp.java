@@ -13,6 +13,7 @@ package de.linzn.telegramapi.staticApp;
 
 import de.linzn.telegramapi.TelegramAPI;
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
@@ -75,8 +76,12 @@ public class TelegramStaticApp {
         JSONObject sampleObject = new JSONObject(telegramAPI.getUpdate().getResponse());
         JSONArray jsonArray = sampleObject.getJSONArray("result");
         for (int i = 0; i < jsonArray.length(); i++) {
-            System.out.println();
-            System.out.println(format(jsonArray.getJSONObject(i)));
+            try {
+                System.out.println();
+                System.out.println(format(jsonArray.getJSONObject(i)));
+            } catch (JSONException e) {
+                System.out.println("Error!");
+            }
         }
     }
 
@@ -87,7 +92,12 @@ public class TelegramStaticApp {
         boolean isGroup = chat.getString("type").equalsIgnoreCase("group");
         int chatID = chat.getInt("id");
         String text = jsonObject.getJSONObject("message").getString("text");
-        String sender = jsonObject.getJSONObject("message").getJSONObject("from").getString("username");
+        String sender;
+        if (jsonObject.getJSONObject("message").getJSONObject("from").has("username")) {
+            sender = jsonObject.getJSONObject("message").getJSONObject("from").getString("username");
+        } else {
+            sender = jsonObject.getJSONObject("message").getJSONObject("from").getString("first_name");
+        }
         int senderChatID = jsonObject.getJSONObject("message").getJSONObject("from").getInt("id");
         Date date = new Date(jsonObject.getJSONObject("message").getLong("date") * 1000);
 
