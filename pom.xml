@@ -48,6 +48,11 @@
                 <configuration>
                     <archive>
                         <addMavenDescriptor>false</addMavenDescriptor>
+                        <manifest>
+                            <addClasspath>true</addClasspath>
+                            <mainClass>de.linzn.telegramapi.staticApp.TelegramStaticApp</mainClass>
+                            <classpathPrefix>dependency/</classpathPrefix>
+                        </manifest>
                     </archive>
                     <finalName>${project.name}</finalName>
                 </configuration>
