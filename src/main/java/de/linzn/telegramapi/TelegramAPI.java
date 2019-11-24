@@ -24,10 +24,6 @@ public class TelegramAPI {
         return SendMessage.init(this.token, chatID, text).sendAPIRequest();
     }
 
-    public TelegramResponse<String> getUpdate() {
-        return GetUpdate.init(this.token).sendAPIRequest();
-    }
-
     public TelegramResponse<String> getUpdate(long offset) {
         return GetUpdate.init(this.token, offset).sendAPIRequest();
     }

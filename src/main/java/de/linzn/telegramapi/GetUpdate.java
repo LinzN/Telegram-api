@@ -24,33 +24,19 @@ import java.time.Duration;
 public class GetUpdate implements ITelegramAPI {
     private HttpRequest request;
 
-    private GetUpdate(String token) {
+    private GetUpdate(String token, long offset) {
         TelegramURLBuilder builder = TelegramURLBuilder
                 .fromURI("https://api.telegram.org")
                 .path("/{token}/getUpdates")
                 .setToken(token);
+        if (offset != 0) {
+            builder.queryParam("offset", offset);
+        }
         request = HttpRequest.newBuilder()
                 .GET()
                 .uri(builder.build())
                 .timeout(Duration.ofSeconds(5))
                 .build();
-    }
-
-    private GetUpdate(String token, long offset) {
-        TelegramURLBuilder builder = TelegramURLBuilder
-                .fromURI("https://api.telegram.org")
-                .path("/{token}/getUpdates?offset=" + offset)
-                .setToken(token);
-        request = HttpRequest.newBuilder()
-                .GET()
-                .uri(builder.build())
-                .timeout(Duration.ofSeconds(5))
-                .build();
-    }
-
-
-    static GetUpdate init(String token) {
-        return new GetUpdate(token);
     }
 
     static GetUpdate init(String token, long offset) {

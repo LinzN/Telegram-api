@@ -68,12 +68,12 @@ public class TelegramStaticApp {
 
     private static void getUpdateRaw(String token) {
         TelegramAPI telegramAPI = new TelegramAPI(token);
-        System.out.println(telegramAPI.getUpdate().getResponse());
+        System.out.println(telegramAPI.getUpdate(0).getResponse());
     }
 
     private static void getUpdate(String token) {
         TelegramAPI telegramAPI = new TelegramAPI(token);
-        JSONObject sampleObject = new JSONObject(telegramAPI.getUpdate().getResponse());
+        JSONObject sampleObject = new JSONObject(telegramAPI.getUpdate(0).getResponse());
         JSONArray jsonArray = sampleObject.getJSONArray("result");
         for (int i = 0; i < jsonArray.length(); i++) {
             try {
